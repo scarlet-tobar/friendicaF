@@ -12,6 +12,7 @@ use Friendica\Core\System;
 use Friendica\Database\DBM;
 use Friendica\Model\Contact;
 use Friendica\Protocol\DFRN;
+use Friendica\Util\Crypto;
 
 require_once 'include/items.php';
 require_once 'include/event.php';
@@ -161,7 +162,7 @@ function dfrn_notify_post(App $a) {
 
 		if ($dfrn_version >= 2.1) {
 			if ((($importer['duplex']) && strlen($importer['cprvkey'])) || (! strlen($importer['cpubkey']))) {
-				openssl_private_decrypt($rawkey, $final_key, $importer['cprvkey']);
+				Crypto::opensslPrivateDecrypt($rawkey, $final_key, $importer['cprvkey']);
 			} else {
 				openssl_public_decrypt($rawkey, $final_key, $importer['cpubkey']);
 			}
@@ -169,7 +170,7 @@ function dfrn_notify_post(App $a) {
 			if ((($importer['duplex']) && strlen($importer['cpubkey'])) || (! strlen($importer['cprvkey']))) {
 				openssl_public_decrypt($rawkey, $final_key, $importer['cpubkey']);
 			} else {
-				openssl_private_decrypt($rawkey, $final_key, $importer['cprvkey']);
+				Crypto::opensslPrivateDecrypt($rawkey, $final_key, $importer['cprvkey']);
 			}
 		}
 

@@ -512,7 +512,7 @@ function dfrn_confirm_post(App $a, $handsfree = null)
 		// verify everything
 
 		$decrypted_source_url = "";
-		openssl_private_decrypt($source_url, $decrypted_source_url, $my_prvkey);
+		Crypto::opensslPrivateDecrypt($source_url, $decrypted_source_url, $my_prvkey);
 
 
 		if (!strlen($decrypted_source_url)) {
@@ -555,7 +555,7 @@ function dfrn_confirm_post(App $a, $handsfree = null)
 
 		if (strlen($aes_key)) {
 			$decrypted_aes_key = "";
-			openssl_private_decrypt($aes_key, $decrypted_aes_key, $my_prvkey);
+			Crypto::opensslPrivateDecrypt($aes_key, $decrypted_aes_key, $my_prvkey);
 			$dfrn_pubkey = openssl_decrypt($public_key, 'AES-256-CBC', $decrypted_aes_key);
 		} else {
 			$dfrn_pubkey = $public_key;
