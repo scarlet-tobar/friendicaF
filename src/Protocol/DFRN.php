@@ -1312,7 +1312,7 @@ class DFRN
 					|| ($owner['page-flags'] == PAGE_COMMUNITY && strlen($contact['pubkey']))
 					|| ($contact['rel'] == CONTACT_IS_SHARING && strlen($contact['pubkey']))
 				) {
-					openssl_public_encrypt($key, $postvars['key'], $contact['pubkey']);
+					openssl_public_encrypt($key, $postvars['key'], $contact['pubkey'], OPENSSL_PKCS1_OAEP_PADDING);
 				} else {
 					openssl_private_encrypt($key, $postvars['key'], $contact['prvkey']);
 				}
@@ -1320,7 +1320,7 @@ class DFRN
 				if (($contact['duplex'] && strlen($contact['prvkey'])) || ($owner['page-flags'] == PAGE_COMMUNITY)) {
 					openssl_private_encrypt($key, $postvars['key'], $contact['prvkey']);
 				} else {
-					openssl_public_encrypt($key, $postvars['key'], $contact['pubkey']);
+					openssl_public_encrypt($key, $postvars['key'], $contact['pubkey'], OPENSSL_PKCS1_OAEP_PADDING);
 				}
 			}
 

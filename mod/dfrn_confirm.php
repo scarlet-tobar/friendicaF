@@ -192,11 +192,11 @@ function dfrn_confirm_post(App $a, $handsfree = null)
 
 			$my_url = System::baseUrl() . '/profile/' . $user['nickname'];
 
-			openssl_public_encrypt($my_url, $params['source_url'], $site_pubkey);
+			openssl_public_encrypt($my_url, $params['source_url'], $site_pubkey, OPENSSL_PKCS1_OAEP_PADDING);
 			$params['source_url'] = bin2hex($params['source_url']);
 
 			if ($aes_allow && function_exists('openssl_encrypt')) {
-				openssl_public_encrypt($src_aes_key, $params['aes_key'], $site_pubkey);
+				openssl_public_encrypt($src_aes_key, $params['aes_key'], $site_pubkey, OPENSSL_PKCS1_OAEP_PADDING);
 				$params['aes_key'] = bin2hex($params['aes_key']);
 				$params['public_key'] = bin2hex(openssl_encrypt($public_key, 'AES-256-CBC', $src_aes_key));
 			}

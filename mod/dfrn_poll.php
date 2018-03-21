@@ -467,8 +467,8 @@ function dfrn_poll_content(App $a)
 			$id_str = $my_id . '.' . mt_rand(1000, 9999);
 
 			if (($r[0]['duplex'] && strlen($r[0]['pubkey'])) || !strlen($r[0]['prvkey'])) {
-				openssl_public_encrypt($hash, $challenge, $r[0]['pubkey']);
-				openssl_public_encrypt($id_str, $encrypted_id, $r[0]['pubkey']);
+				openssl_public_encrypt($hash, $challenge, $r[0]['pubkey'], OPENSSL_PKCS1_OAEP_PADDING);
+				openssl_public_encrypt($id_str, $encrypted_id, $r[0]['pubkey'], OPENSSL_PKCS1_OAEP_PADDING);
 			} else {
 				openssl_private_encrypt($hash, $challenge, $r[0]['prvkey']);
 				openssl_private_encrypt($id_str, $encrypted_id, $r[0]['prvkey']);

@@ -245,7 +245,7 @@ function settings_post(App $a)
 				}
 				if (strlen($mail_pass)) {
 					$pass = '';
-					openssl_public_encrypt($mail_pass, $pass, $a->user['pubkey']);
+					openssl_public_encrypt($mail_pass, $pass, $a->user['pubkey'], OPENSSL_PKCS1_OAEP_PADDING);
 					dba::update('mailacct', ['pass' => bin2hex($pass)], ['uid' => local_user()]);
 				}
 				$r = q("UPDATE `mailacct` SET `server` = '%s', `port` = %d, `ssltype` = '%s', `user` = '%s',

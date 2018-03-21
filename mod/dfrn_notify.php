@@ -279,8 +279,8 @@ function dfrn_notify_content(App $a) {
 			openssl_private_encrypt($hash, $challenge, $prv_key);
 			openssl_private_encrypt($id_str, $encrypted_id, $prv_key);
 		} elseif (strlen($pub_key)) {
-			openssl_public_encrypt($hash, $challenge, $pub_key);
-			openssl_public_encrypt($id_str, $encrypted_id, $pub_key);
+			openssl_public_encrypt($hash, $challenge, $pub_key, OPENSSL_PKCS1_OAEP_PADDING);
+			openssl_public_encrypt($id_str, $encrypted_id, $pub_key, OPENSSL_PKCS1_OAEP_PADDING);
 		} else {
 			/// @TODO these kind of else-blocks are making the code harder to understand
 			$status = 1;
