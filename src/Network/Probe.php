@@ -20,8 +20,8 @@ use Friendica\Util\Crypto;
 use Friendica\Util\Network;
 use Friendica\Util\XML;
 use dba;
-use DOMXPath;
 use DOMDocument;
+use DOMXPath;
 
 require_once 'include/dba.php';
 
@@ -1011,7 +1011,7 @@ class Probe
 			return false;
 		}
 
-		$xpath = new DomXPath($doc);
+		$xpath = new DOMXPath($doc);
 
 		$vcards = $xpath->query("//div[contains(concat(' ', @class, ' '), ' vcard ')]");
 		if (!is_object($vcards)) {
@@ -1325,7 +1325,7 @@ class Probe
 			return false;
 		}
 
-		$xpath = new DomXPath($doc);
+		$xpath = new DOMXPath($doc);
 
 		$data = [];
 
@@ -1437,7 +1437,7 @@ class Probe
 			return false;
 		}
 
-		$xpath = new DomXPath($doc);
+		$xpath = new DOMXPath($doc);
 
 		//$feeds = $xpath->query("/html/head/link[@type='application/rss+xml']");
 		$feeds = $xpath->query("/html/head/link[@type='application/rss+xml' and @rel='alternate']");
