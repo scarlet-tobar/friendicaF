@@ -44,14 +44,6 @@ class BaseApi extends BaseModule
 	 * @var string json|xml|rss|atom
 	 */
 	protected static $format = 'json';
-	/**
-	 * @var bool|int
-	 */
-	protected static $current_user_id;
-	/**
-	 * @var array
-	 */
-	protected static $current_token = [];
 
 	public static function init(array $parameters = [])
 	{
@@ -184,7 +176,6 @@ class BaseApi extends BaseModule
 	 *
 	 * @param string $scope the requested scope (read, write, follow)
 	 *
-	 * @return bool Was a user authenticated?
 	 * @throws HTTPException\ForbiddenException
 	 * @throws HTTPException\UnauthorizedException
 	 * @throws HTTPException\InternalServerErrorException
@@ -197,70 +188,106 @@ class BaseApi extends BaseModule
 	 */
 	protected static function login(string $scope)
 	{
-		if (empty(self::$current_user_id)) {
-			self::$current_token = self::getTokenByBearer();
-			if (!empty(self::$current_token['uid'])) {
-				self::$current_user_id = self::$current_token['uid'];
-			} else {
-				self::$current_user_id = 0;
-			}
+		if (!self::getCachedCurrentUserIdFromRequest()) {
+			Logger::debug(API_LOG_PREFIX . 'failed', ['module' => 'api', 'action' => 'login', 'parameters' => $_SERVER]);
+			header('WWW-Authenticate: Basic realm="Friendica"');
+			throw new HTTPException\UnauthorizedException('This API requires login');
 		}
 
-		if (!empty($scope) && !empty(self::$current_token)) {
-			if (empty(self::$current_token[$scope])) {
-				Logger::warning('The requested scope is not allowed', ['scope' => $scope, 'application' => self::$current_token]);
-				DI::mstdnError()->Forbidden();
-			}
+		$current_token = self::getCachedTokenByBearer();
+		if ($current_token && empty($current_token[$scope])) {
+			Logger::warning('The requested scope is not allowed', ['scope' => $scope, 'application' => self::getCachedTokenByBearer()]);
+			DI::mstdnError()->Forbidden();
 		}
-
-		if (empty(self::$current_user_id)) {
-			// The execution stops here if no one is logged in
-			api_login(DI::app());
-		}
-
-		self::$current_user_id = api_user();
-
-		return (bool)self::$current_user_id;
 	}
 
 	/**
-	 * Get current application
+	 * Returns the current logged user id from the local variable or attempts to retrieve it from the request.
 	 *
-	 * @return array token
+	 * @return int
+	 * @throws HTTPException\ForbiddenException
+	 * @throws HTTPException\InternalServerErrorException
+	 * @throws HTTPException\UnauthorizedException
 	 */
-	protected static function getCurrentApplication()
+	public static function getCachedCurrentUserIdFromRequest(): int
 	{
-		return self::$current_token;
+		static $current_user_id = null;
+
+		if (!is_null($current_user_id)) {
+			return $current_user_id;
+		}
+
+		$current_user_id = self::getCurrentUserIDFromRequest();
+
+		return $current_user_id;
 	}
 
 	/**
 	 * Get current user id, returns 0 if not logged in
 	 *
 	 * @return int User ID
+	 * @throws HTTPException\ForbiddenException
+	 * @throws HTTPException\InternalServerErrorException
+	 * @throws HTTPException\UnauthorizedException
 	 */
-	public static function getCurrentUserID(bool $nologin = false)
+	private static function getCurrentUserIDFromRequest(): int
 	{
-		if (empty(self::$current_user_id)) {
-			self::$current_token = self::getTokenByBearer();
-			if (!empty(self::$current_token['uid'])) {
-				self::$current_user_id = self::$current_token['uid'];
-			} else {
-				self::$current_user_id = 0;
-			}
-		}
+		$current_user_id = self::getCurrentUserIDFromToken();
 
-		if ($nologin) {
-			return (int)self::$current_user_id;
-		}
-
-		if (empty(self::$current_user_id)) {
+		if (empty($current_user_id)) {
 			// Fetch the user id if logged in - but don't fail if not
 			api_login(DI::app(), false);
 
-			self::$current_user_id = api_user();
+			$current_user_id = api_user();
 		}
 
-		return (int)self::$current_user_id;
+		return $current_user_id;
+	}
+
+	/**
+	 * Returns the current user id if it is set or returns the user id from the Bearer token.
+	 *
+	 * @return int
+	 */
+	private static function getCurrentUserIDFromToken(): int
+	{
+		$current_token = self::getCachedTokenByBearer();
+		if (!empty($current_token['uid'])) {
+			$current_user_id = $current_token['uid'];
+		} else {
+			$current_user_id = 0;
+		}
+
+		return $current_user_id;
+	}
+
+	/**
+	 * Get current application from the Bearer token
+	 *
+	 * @return array token
+	 */
+	protected static function getCurrentApplication(): array
+	{
+		return self::getCachedTokenByBearer();
+	}
+
+	/**
+	 * Returns the current authentication token, either from local variable
+	 * or from the Bearer header if it hasn't been retrieved yet
+	 *
+	 * @return array
+	 */
+	protected static function getCachedTokenByBearer(): array
+	{
+		static $current_token = null;
+
+		if (!is_null($current_token)) {
+			return $current_token;
+		}
+
+		$current_token = self::getTokenByBearer();
+
+		return $current_token;
 	}
 
 	/**
@@ -268,7 +295,7 @@ class BaseApi extends BaseModule
 	 *
 	 * @return array User Token
 	 */
-	private static function getTokenByBearer()
+	private static function getTokenByBearer(): array
 	{
 		$authorization = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 

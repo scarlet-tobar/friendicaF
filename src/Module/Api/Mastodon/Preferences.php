@@ -38,7 +38,7 @@ class Preferences extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$user = User::getById($uid, ['language', 'allow_cid', 'allow_gid', 'deny_cid', 'deny_gid']);
 		if (!empty($user['allow_cid']) || !empty($user['allow_gid']) || !empty($user['deny_cid']) || !empty($user['deny_gid'])) {

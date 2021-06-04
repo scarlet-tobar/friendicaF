@@ -38,7 +38,7 @@ class RebloggedBy extends BaseApi
 	 */
 	public static function rawContent(array $parameters = [])
 	{
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();

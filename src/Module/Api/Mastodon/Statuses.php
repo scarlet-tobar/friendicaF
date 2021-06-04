@@ -44,7 +44,7 @@ class Statuses extends BaseApi
 	public static function post(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'status'         => '',    // Text content of the status. If media_ids is provided, this becomes optional. Attaching a poll is optional while status is provided.
@@ -195,7 +195,7 @@ class Statuses extends BaseApi
 	public static function delete(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();
@@ -223,6 +223,6 @@ class Statuses extends BaseApi
 			DI::mstdnError()->UnprocessableEntity();
 		}
 
-		System::jsonExit(DI::mstdnStatus()->createFromUriId($parameters['id'], self::getCurrentUserID()));
+		System::jsonExit(DI::mstdnStatus()->createFromUriId($parameters['id'], self::getCachedCurrentUserIdFromRequest()));
 	}
 }

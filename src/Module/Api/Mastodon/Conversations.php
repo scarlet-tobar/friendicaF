@@ -34,7 +34,7 @@ class Conversations extends BaseApi
 	public static function delete(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (!empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();
@@ -53,7 +53,7 @@ class Conversations extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'limit'    => 20, // Maximum number of results. Defaults to 20. Max 40.

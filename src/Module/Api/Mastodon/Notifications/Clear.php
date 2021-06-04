@@ -33,7 +33,7 @@ class Clear extends BaseApi
 	public static function post(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		DBA::update('notification', ['seen' => true], ['uid' => $uid]);
 

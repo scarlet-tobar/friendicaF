@@ -38,7 +38,7 @@ class Relationships extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'id' => [],

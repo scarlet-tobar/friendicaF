@@ -44,7 +44,7 @@ class Index extends BaseApi
 			'count'    => 0,
 		]);
 
-		$condition = ["`id` > ? AND `uid` = ?", $request['since_id'], self::$current_user_id];
+		$condition = ["`id` > ? AND `uid` = ?", $request['since_id'], self::getCachedCurrentUserIdFromRequest()];
 		$params = ['limit' => $request['count']];
 		$events = DBA::selectToArray('event', [], $condition, $params);
 

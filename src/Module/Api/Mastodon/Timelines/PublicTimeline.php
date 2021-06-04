@@ -41,7 +41,7 @@ class PublicTimeline extends BaseApi
 	 */
 	public static function rawContent(array $parameters = [])
 	{
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'local'           => false, // Show only local statuses? Defaults to false.

@@ -66,7 +66,7 @@ class Statuses extends BaseApi
 
 		$params = ['order' => ['uri-id' => true], 'limit' => $request['limit']];
 
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (!$uid) {
 			$condition = ['author-id' => $id, 'private' => [Item::PUBLIC, Item::UNLISTED],

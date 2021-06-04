@@ -39,7 +39,7 @@ class Direct extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'max_id'   => 0,  // Return results older than id

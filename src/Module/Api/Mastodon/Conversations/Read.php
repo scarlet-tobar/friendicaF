@@ -34,7 +34,7 @@ class Read extends BaseApi
 	public static function post(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (!empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();

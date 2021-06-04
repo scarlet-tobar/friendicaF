@@ -89,7 +89,7 @@ $called_api = [];
  */
 function api_user()
 {
-	$user = BaseApi::getCurrentUserID(true);
+	$user = BaseApi::getCachedCurrentUserIdFromRequest();
 	if (!empty($user)) {
 		return $user;
 	}
@@ -216,7 +216,7 @@ function api_login(App $a, bool $do_login = true)
 			if (!is_null($token)) {
 				$oauth1->loginUser($token->uid);
 				Session::set('allow_api', true);
-				return;
+				return true;
 			}
 			echo __FILE__.__LINE__.__FUNCTION__ . "<pre>";
 			var_dump($consumer, $token);
@@ -226,7 +226,7 @@ function api_login(App $a, bool $do_login = true)
 		}
 
 		if (!$do_login) {
-			return;
+			return false;
 		}
 
 		Logger::debug(API_LOG_PREFIX . 'failed', ['module' => 'api', 'action' => 'login', 'parameters' => $_SERVER]);
@@ -271,7 +271,7 @@ function api_login(App $a, bool $do_login = true)
 
 	if (!DBA::isResult($record)) {
 		if (!$do_login) {
-			return;
+			return false;
 		}
 		Logger::debug(API_LOG_PREFIX . 'failed', ['module' => 'api', 'action' => 'login', 'parameters' => $_SERVER]);
 		header('WWW-Authenticate: Basic realm="Friendica"');
@@ -288,6 +288,8 @@ function api_login(App $a, bool $do_login = true)
 	$_SESSION["allow_api"] = true;
 
 	Hook::callAll('logged_in', $a->user);
+
+	return true;
 }
 
 /**

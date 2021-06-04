@@ -35,7 +35,7 @@ class Media extends BaseApi
 	public static function post(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		Logger::info('Photo post', ['request' => $_REQUEST, 'files' => $_FILES]);
 
@@ -56,7 +56,7 @@ class Media extends BaseApi
 	public static function put(array $parameters = [])
 	{
 		self::login(self::SCOPE_WRITE);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'file'        => [], // The file to be attached, using multipart form data.
@@ -86,7 +86,7 @@ class Media extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();

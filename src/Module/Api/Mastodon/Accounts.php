@@ -56,7 +56,7 @@ class Accounts extends BaseApi
 			}
 		}
 
-		$account = DI::mstdnAccount()->createFromContactId($id, self::getCurrentUserID());
+		$account = DI::mstdnAccount()->createFromContactId($id, self::getCachedCurrentUserIdFromRequest());
 		System::jsonExit($account);
 	}
 }

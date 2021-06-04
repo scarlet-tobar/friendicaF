@@ -44,9 +44,9 @@ class Show extends BaseApi
 		// retrieve general information about profiles for user
 		$directory = DI::config()->get('system', 'directory');
 
-		$profile = Profile::getByUID(self::$current_user_id);
+		$profile = Profile::getByUID(self::getCachedCurrentUserIdFromRequest());
 		
-		$profileFields = DI::profileField()->select(['uid' => self::$current_user_id, 'psid' => PermissionSet::PUBLIC]);
+		$profileFields = DI::profileField()->select(['uid' => self::getCachedCurrentUserIdFromRequest(), 'psid' => PermissionSet::PUBLIC]);
 
 		$profile = self::formatProfile($profile, $profileFields);
 
@@ -58,7 +58,7 @@ class Show extends BaseApi
 		}
 
 		// return settings, authenticated user and profiles data
-		$self = Contact::selectFirst(['nurl'], ['uid' => self::$current_user_id, 'self' => true]);
+		$self = Contact::selectFirst(['nurl'], ['uid' => self::getCachedCurrentUserIdFromRequest(), 'self' => true]);
 
 		$result = [
 			'multi_profiles' => false,

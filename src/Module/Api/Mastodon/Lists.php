@@ -35,7 +35,7 @@ class Lists extends BaseApi
 	{
 		self::login(self::SCOPE_WRITE);
 
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {
 			DI::mstdnError()->UnprocessableEntity();
@@ -56,7 +56,7 @@ class Lists extends BaseApi
 	{
 		self::login(self::SCOPE_WRITE);
 
-		$uid   = self::getCurrentUserID();
+		$uid   = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
 			'title' => '',
@@ -97,7 +97,7 @@ class Lists extends BaseApi
 	public static function rawContent(array $parameters = [])
 	{
 		self::login(self::SCOPE_READ);
-		$uid = self::getCurrentUserID();
+		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {
 			$lists = [];
