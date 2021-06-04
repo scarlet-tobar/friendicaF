@@ -24,13 +24,13 @@ namespace Friendica\Module\Api\Mastodon;
 use Friendica\Content\Smilies;
 use Friendica\Core\System;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/follow_requests
  */
-class CustomEmojis extends BaseApi
+class CustomEmojis extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -24,14 +24,14 @@ namespace Friendica\Module\Api\Mastodon\Lists;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/lists/#accounts-in-a-list
  *
  * Currently the output will be unordered since we use public contact ids in the api and not user contact ids.
  */
-class Accounts extends BaseApi
+class Accounts extends BaseMastodon
 {
 	public static function delete(array $parameters = [])
 	{

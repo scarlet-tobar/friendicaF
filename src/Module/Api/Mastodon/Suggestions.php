@@ -24,12 +24,12 @@ namespace Friendica\Module\Api\Mastodon;
 use Friendica\Core\System;
 use Friendica\DI;
 use Friendica\Model\Contact;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/suggestions/
  */
-class Suggestions extends BaseApi
+class Suggestions extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

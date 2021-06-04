@@ -24,13 +24,13 @@ namespace Friendica\Module\Api\Mastodon;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Util\Network;
 
 /**
  * Apps class to register new OAuth clients
  */
-class Apps extends BaseApi
+class Apps extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

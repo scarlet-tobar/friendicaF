@@ -32,14 +32,14 @@ use Friendica\Model\Item;
 use Friendica\Model\Photo;
 use Friendica\Model\Post;
 use Friendica\Model\User;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Protocol\Activity;
 use Friendica\Util\Images;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/
  */
-class Statuses extends BaseApi
+class Statuses extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

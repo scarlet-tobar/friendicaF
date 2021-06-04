@@ -22,13 +22,13 @@
 namespace Friendica\Module\Api\Mastodon\Accounts;
 
 use Friendica\Core\Logger;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Util\HTTPInputData;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class UpdateCredentials extends BaseApi
+class UpdateCredentials extends BaseMastodon
 {
 	public static function patch(array $parameters = [])
 	{

@@ -25,14 +25,14 @@ use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 use Friendica\Protocol\Activity;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/favourites/
  */
-class Favourited extends BaseApi
+class Favourited extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

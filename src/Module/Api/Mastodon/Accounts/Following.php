@@ -24,12 +24,12 @@ namespace Friendica\Module\Api\Mastodon\Accounts;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class Following extends BaseApi
+class Following extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -262,16 +262,6 @@ class BaseApi extends BaseModule
 	}
 
 	/**
-	 * Get current application from the Bearer token
-	 *
-	 * @return array token
-	 */
-	protected static function getCurrentApplication(): array
-	{
-		return self::getCachedTokenByBearer();
-	}
-
-	/**
 	 * Returns the current authentication token, either from local variable
 	 * or from the Bearer header if it hasn't been retrieved yet
 	 *

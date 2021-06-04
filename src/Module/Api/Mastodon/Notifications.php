@@ -27,13 +27,13 @@ use Friendica\DI;
 use Friendica\Model\Contact;
 use Friendica\Model\Post;
 use Friendica\Model\Verb;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Protocol\Activity;
 
 /**
  * @see https://docs.joinmastodon.org/methods/notifications/
  */
-class Notifications extends BaseApi
+class Notifications extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

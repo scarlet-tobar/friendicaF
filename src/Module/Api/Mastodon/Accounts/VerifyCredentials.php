@@ -25,12 +25,12 @@ use Friendica\Core\System;
 use Friendica\DI;
 use Friendica\Model\Contact;
 use Friendica\Model\User;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class VerifyCredentials extends BaseApi
+class VerifyCredentials extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -25,12 +25,12 @@ use Friendica\Core\Logger;
 use Friendica\Core\System;
 use Friendica\DI;
 use Friendica\Model\Photo;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/media/
  */
-class Media extends BaseApi
+class Media extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

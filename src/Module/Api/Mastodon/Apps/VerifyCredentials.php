@@ -23,12 +23,12 @@ namespace Friendica\Module\Api\Mastodon\Apps;
 
 use Friendica\Core\System;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/apps/
  */
-class VerifyCredentials extends BaseApi
+class VerifyCredentials extends BaseMastodon
 {
 	public static function rawContent(array $parameters = [])
 	{

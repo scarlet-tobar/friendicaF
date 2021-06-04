@@ -25,12 +25,12 @@ use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/
  */
-class Context extends BaseApi
+class Context extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -22,12 +22,12 @@
 namespace Friendica\Module\Api\Mastodon\Accounts;
 
 use Friendica\Core\System;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class IdentityProofs extends BaseApi
+class IdentityProofs extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

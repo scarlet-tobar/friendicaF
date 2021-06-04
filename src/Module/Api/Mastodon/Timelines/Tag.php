@@ -26,13 +26,13 @@ use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/
  */
-class Tag extends BaseApi
+class Tag extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

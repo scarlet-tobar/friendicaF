@@ -25,12 +25,12 @@ use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Contact;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class Lists extends BaseApi
+class Lists extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -26,13 +26,13 @@ use Friendica\Core\Protocol;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * @see https://docs.joinmastodon.org/methods/instance/directory/
  */
-class Directory extends BaseApi
+class Directory extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

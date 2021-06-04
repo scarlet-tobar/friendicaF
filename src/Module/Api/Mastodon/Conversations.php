@@ -24,12 +24,12 @@ namespace Friendica\Module\Api\Mastodon;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/conversations/
  */
-class Conversations extends BaseApi
+class Conversations extends BaseMastodon
 {
 	public static function delete(array $parameters = [])
 	{

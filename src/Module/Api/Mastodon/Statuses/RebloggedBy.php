@@ -24,13 +24,13 @@ namespace Friendica\Module\Api\Mastodon\Statuses;
 use Friendica\Core\System;
 use Friendica\DI;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Protocol\Activity;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/
  */
-class RebloggedBy extends BaseApi
+class RebloggedBy extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

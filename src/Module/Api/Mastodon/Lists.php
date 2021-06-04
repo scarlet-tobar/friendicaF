@@ -23,13 +23,13 @@ namespace Friendica\Module\Api\Mastodon;
 
 use Friendica\Core\System;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Model\Group;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/lists/
  */
-class Lists extends BaseApi
+class Lists extends BaseMastodon
 {
 	public static function delete(array $parameters = [])
 	{

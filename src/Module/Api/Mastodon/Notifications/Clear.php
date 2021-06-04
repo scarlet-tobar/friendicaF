@@ -23,12 +23,12 @@ namespace Friendica\Module\Api\Mastodon\Notifications;
 
 use Friendica\Core\System;
 use Friendica\Database\DBA;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/notifications/
  */
-class Clear extends BaseApi
+class Clear extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

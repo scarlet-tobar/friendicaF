@@ -22,12 +22,12 @@
 namespace Friendica\Module\Api\Mastodon;
 
 use Friendica\Core\System;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/endorsements/
  */
-class Endorsements extends BaseApi
+class Endorsements extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

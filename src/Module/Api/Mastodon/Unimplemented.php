@@ -21,12 +21,12 @@
 
 namespace Friendica\Module\Api\Mastodon;
 
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * Dummy class for all currently unimplemented endpoints
  */
-class Unimplemented extends BaseApi
+class Unimplemented extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

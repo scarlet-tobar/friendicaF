@@ -24,13 +24,13 @@ namespace Friendica\Module\Api\Mastodon\Timelines;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/
  */
-class Direct extends BaseApi
+class Direct extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

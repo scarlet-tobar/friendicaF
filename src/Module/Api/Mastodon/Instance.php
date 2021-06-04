@@ -22,13 +22,13 @@
 namespace Friendica\Module\Api\Mastodon;
 
 use Friendica\Core\System;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Object\Api\Mastodon\Instance as InstanceEntity;
 
 /**
  * @see https://docs.joinmastodon.org/api/rest/instances/
  */
-class Instance extends BaseApi
+class Instance extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

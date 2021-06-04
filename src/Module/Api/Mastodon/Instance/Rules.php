@@ -25,13 +25,13 @@ use Friendica\Content\Text\BBCode;
 use Friendica\Content\Text\HTML;
 use Friendica\Core\System;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * Undocumented API endpoint
  */
-class Rules extends BaseApi
+class Rules extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -28,13 +28,13 @@ use Friendica\DI;
 use Friendica\Model\Item;
 use Friendica\Model\Post;
 use Friendica\Model\Verb;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Protocol\Activity;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class Statuses extends BaseApi
+class Statuses extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

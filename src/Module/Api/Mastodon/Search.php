@@ -29,13 +29,13 @@ use Friendica\DI;
 use Friendica\Model\Contact;
 use Friendica\Model\Post;
 use Friendica\Model\Tag;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Object\Search\ContactResult;
 
 /**
  * @see https://docs.joinmastodon.org/methods/search/
  */
-class Search extends BaseApi
+class Search extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

@@ -22,12 +22,12 @@
 namespace Friendica\Module\Api\Mastodon;
 
 use Friendica\Core\System;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/filters/
  */
-class Filters extends BaseApi
+class Filters extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

@@ -24,12 +24,12 @@ namespace Friendica\Module\Api\Mastodon\Accounts;
 use Friendica\Core\System;
 use Friendica\DI;
 use Friendica\Model\Contact;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/
  */
-class Block extends BaseApi
+class Block extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

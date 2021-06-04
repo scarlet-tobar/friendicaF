@@ -25,13 +25,13 @@ use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 use Friendica\Network\HTTPException;
 
 /**
  * @see https://docs.joinmastodon.org/methods/timelines/
  */
-class ListTimeline extends BaseApi
+class ListTimeline extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

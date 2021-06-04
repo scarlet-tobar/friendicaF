@@ -26,12 +26,12 @@ use Friendica\Database\DBA;
 use Friendica\DI;
 use Friendica\Model\Item;
 use Friendica\Model\Post;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/
  */
-class Unfavourite extends BaseApi
+class Unfavourite extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{

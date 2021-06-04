@@ -22,12 +22,12 @@
 namespace Friendica\Module\Api\Mastodon;
 
 use Friendica\Core\System;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/statuses/scheduled_statuses/
  */
-class ScheduledStatuses extends BaseApi
+class ScheduledStatuses extends BaseMastodon
 {
 	/**
 	 * @param array $parameters

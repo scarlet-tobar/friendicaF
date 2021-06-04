@@ -24,12 +24,12 @@ namespace Friendica\Module\Api\Mastodon;
 use Friendica\Core\System;
 use Friendica\Database\DBA;
 use Friendica\DI;
-use Friendica\Module\BaseApi;
+use Friendica\Module\Api\BaseMastodon;
 
 /**
  * @see https://docs.joinmastodon.org/methods/accounts/blocks/
  */
-class Blocks extends BaseApi
+class Blocks extends BaseMastodon
 {
 	/**
 	 * @param array $parameters
