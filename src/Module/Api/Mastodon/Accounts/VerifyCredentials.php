@@ -38,7 +38,7 @@ class VerifyCredentials extends BaseMastodon
 	 */
 	public static function rawContent(array $parameters = [])
 	{
-		self::login(self::SCOPE_READ);
+		self::checkAllowedScope(self::SCOPE_READ);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$self = User::getOwnerDataById($uid);

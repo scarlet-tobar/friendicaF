@@ -35,7 +35,7 @@ class Index extends BaseApi
 {
 	public static function rawContent(array $parameters = [])
 	{
-		if (self::login(self::SCOPE_READ) === false) {
+		if (self::checkAllowedScope(self::SCOPE_READ) === false) {
 			throw new HTTPException\ForbiddenException();
 		}
 

@@ -43,7 +43,7 @@ class Statuses extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{
-		self::login(self::SCOPE_WRITE);
+		self::checkAllowedScope(self::SCOPE_WRITE);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([
@@ -194,7 +194,7 @@ class Statuses extends BaseMastodon
 
 	public static function delete(array $parameters = [])
 	{
-		self::login(self::SCOPE_READ);
+		self::checkAllowedScope(self::SCOPE_READ);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {

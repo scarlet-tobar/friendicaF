@@ -33,7 +33,7 @@ class Mute extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{
-		self::login(self::SCOPE_FOLLOW);
+		self::checkAllowedScope(self::SCOPE_FOLLOW);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		if (empty($parameters['id'])) {

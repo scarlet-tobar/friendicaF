@@ -40,7 +40,7 @@ class Favourited extends BaseMastodon
 	 */
 	public static function rawContent(array $parameters = [])
 	{
-		self::login(self::SCOPE_READ);
+		self::checkAllowedScope(self::SCOPE_READ);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		// @todo provide HTTP link header

@@ -32,7 +32,7 @@ class UpdateCredentials extends BaseMastodon
 {
 	public static function patch(array $parameters = [])
 	{
-		self::login(self::SCOPE_WRITE);
+		self::checkAllowedScope(self::SCOPE_WRITE);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$data = HTTPInputData::process();

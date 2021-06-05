@@ -45,7 +45,7 @@ class FollowRequests extends BaseMastodon
 	 */
 	public static function post(array $parameters = [])
 	{
-		self::login(self::SCOPE_FOLLOW);
+		self::checkAllowedScope(self::SCOPE_FOLLOW);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$introduction = DI::intro()->selectFirst(['id' => $parameters['id'], 'uid' => $uid]);
@@ -83,7 +83,7 @@ class FollowRequests extends BaseMastodon
 	 */
 	public static function rawContent(array $parameters = [])
 	{
-		self::login(self::SCOPE_READ);
+		self::checkAllowedScope(self::SCOPE_READ);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		$request = self::getRequest([

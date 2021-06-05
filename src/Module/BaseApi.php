@@ -170,23 +170,16 @@ class BaseApi extends BaseModule
 	}
 
 	/**
-	 * Log in user via OAuth1 or Simple HTTP Auth.
-	 *
-	 * Simple Auth allow username in form of <pre>user@server</pre>, ignoring server part
+	 * Check the logged in user is allowed to use the provided API scope. Aborts request if not logged or
+	 * insufficient scopes.
 	 *
 	 * @param string $scope the requested scope (read, write, follow)
 	 *
 	 * @throws HTTPException\ForbiddenException
 	 * @throws HTTPException\UnauthorizedException
 	 * @throws HTTPException\InternalServerErrorException
-	 * @hook  'authenticate'
-	 *               array $addon_auth
-	 *               'username' => username from login form
-	 *               'password' => password from login form
-	 *               'authenticated' => return status,
-	 *               'user_record' => return authenticated user record
 	 */
-	protected static function login(string $scope)
+	protected static function checkAllowedScope(string $scope)
 	{
 		if (!self::getCachedCurrentUserIdFromRequest()) {
 			Logger::debug(API_LOG_PREFIX . 'failed', ['module' => 'api', 'action' => 'login', 'parameters' => $_SERVER]);

@@ -32,7 +32,7 @@ class Clear extends BaseMastodon
 {
 	public static function post(array $parameters = [])
 	{
-		self::login(self::SCOPE_WRITE);
+		self::checkAllowedScope(self::SCOPE_WRITE);
 		$uid = self::getCachedCurrentUserIdFromRequest();
 
 		DBA::update('notification', ['seen' => true], ['uid' => $uid]);
