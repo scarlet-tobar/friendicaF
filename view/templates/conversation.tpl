@@ -1,6 +1,6 @@
 {{$live_update nofilter}}
 {{foreach $threads as $thread}}
-<div id="thread-wrapper-{{$thread.id}}" class="thread-wrapper">
+<div id="thread-wrapper-{{$thread.id}}" class="thread-wrapper" role="article">
 	{{foreach $thread.items as $item}}
 		{{if $item.comment_firstcollapsed}}
 			<div class="hide-comments-outer">

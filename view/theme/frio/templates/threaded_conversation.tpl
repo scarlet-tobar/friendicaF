@@ -3,7 +3,7 @@
 {{$live_update nofilter}}
 {{foreach $threads as $thread}}
 <hr class="sr-only" />
-<div id="thread-wrapper-{{$thread.uriid}}" class="thread-wrapper {{if $thread.threaded}}threaded{{/if}} {{$thread.toplevel}} {{$thread.network}} {{if $thread.thread_level==1}}panel-default panel{{/if}} {{if $thread.thread_level!=1}}comment-wrapper{{/if}}" style="{{if $item.thread_level>2}}margin-left: -15px; margin-right:-16px; margin-bottom:-16px;{{/if}}"><!-- panel -->
+<div id="thread-wrapper-{{$thread.uriid}}" class="thread-wrapper {{if $thread.threaded}}threaded{{/if}} {{$thread.toplevel}} {{$thread.network}} {{if $thread.thread_level==1}}panel-default panel{{/if}} {{if $thread.thread_level!=1}}comment-wrapper{{/if}}" style="{{if $item.thread_level>2}}margin-left: -15px; margin-right:-16px; margin-bottom:-16px;{{/if}}" role="article"><!-- panel -->
 
 		{{* {{if $thread.type == tag}}
 			{{include file="wall_item_tag.tpl" item=$thread}}
