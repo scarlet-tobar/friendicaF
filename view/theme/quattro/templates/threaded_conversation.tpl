@@ -1,7 +1,7 @@
 {{$live_update nofilter}}
 {{foreach $threads as $thread}}
 
-<div id="tread-wrapper-{{$thread.uriid}}" class="tread-wrapper {{if $thread.threaded}}threaded{{/if}}  {{$thread.toplevel}} {{if $thread.toplevel}} h-entry  {{else}} u-comment h-cite {{/if}} {{$thread.network}}">
+<div id="thread-wrapper-{{$thread.uriid}}" class="thread-wrapper {{if $thread.threaded}}threaded{{/if}}  {{$thread.toplevel}} {{if $thread.toplevel}} h-entry  {{else}} u-comment h-cite {{/if}} {{$thread.network}}">
 
 
 		{{if $thread.type == tag}}

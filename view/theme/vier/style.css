@@ -1352,7 +1352,7 @@ section.minimal {
 }
 
 /* wall item */
-.tread-wrapper {
+.thread-wrapper {
 	/* border-bottom: 1px solid #BDCDD4; */
 	border-bottom: 1px solid #D2D2D2;
 	position: relative;
@@ -1741,7 +1741,7 @@ section.minimal {
 	/* width: 700px; */
 	width: 100%;
 }
-.comment-edit-preview .tread-wrapper {
+.comment-edit-preview .thread-wrapper {
 	/* width: 700px; */
 	width: 100%;
 	padding: 0;
@@ -1817,7 +1817,7 @@ profile-jot-form #jot-title, #profile-jot-form #jot-category {
 	clear: both;
 }
 
-#jot-preview-content .tread-wrapper {
+#jot-preview-content .thread-wrapper {
 	background-color: #fce94f;
 }
 

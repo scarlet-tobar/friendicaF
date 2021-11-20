@@ -987,10 +987,10 @@ input#dfrn-url {
 	border-radius: 3px;
 }
 
-.tread-wrapper .tread-wrapper {
+.thread-wrapper .thread-wrapper {
 	margin-left: 50px;
 }
-.tread-wrapper .wall-item-comment-wrapper {
+.thread-wrapper .wall-item-comment-wrapper {
 	margin-left: 50px;
 }
 

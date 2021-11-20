@@ -1,6 +1,6 @@
 {{$live_update nofilter}}
 {{foreach $threads as $thread}}
-<div id="tread-wrapper-{{$thread.id}}" class="tread-wrapper">
+<div id="thread-wrapper-{{$thread.id}}" class="thread-wrapper">
 	{{foreach $thread.items as $item}}
         {{if $mode == display}}
         {{else}}

@@ -4,7 +4,7 @@
 </div>
 
 {{foreach $mails as $mail}}
-	<div id="tread-wrapper-{{$mail_item.id}}" class="tread-wrapper">
+	<div id="thread-wrapper-{{$mail_item.id}}" class="thread-wrapper">
 		{{include file="mail_conv.tpl"}}
 	</div>
 {{/foreach}}

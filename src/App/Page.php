@@ -460,7 +460,7 @@ class Page implements ArrayAccess
 
 			$xpath = new DOMXPath($doc);
 
-			$list = $xpath->query("//*[contains(@id,'tread-wrapper-')]");  /* */
+			$list = $xpath->query("//*[contains(@id,'thread-wrapper-')]");  /* */
 
 			foreach ($list as $item) {
 				$item = $target->importNode($item, true);

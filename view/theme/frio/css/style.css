@@ -1380,7 +1380,7 @@ section #jotOpen {
 #jot-modal #profile-jot-wrapper,
 #jot-modal #jot-text-wrap,
 #jot-modal #jot-preview-content,
-#jot-modal #tread-wrapper--1,
+#jot-modal #thread-wrapper--1,
 #jot-modal #item-Q0,
 #jot-modal #profile-jot-acl-wrapper,
 #jot-modal #acl-wrapper {
@@ -1599,7 +1599,7 @@ textarea.comment-edit-text:focus + .comment-edit-form .preview {
 .panel .panel-body {
 	word-wrap: break-word;
 }
-.tread-wrapper .media {
+.thread-wrapper .media {
 	overflow: visible;
 	word-wrap: break-word;
 }
@@ -3306,11 +3306,11 @@ There are for some reasons empty <a> tags. I don't know why */
 }
 
 /* hovercard fix */
-body .tread-wrapper .hovercard a,
-body .tread-wrapper .hovercard a:hover {
+body .thread-wrapper .hovercard a,
+body .thread-wrapper .hovercard a:hover {
 	color: $link_color;
 }
-body .tread-wrapper .hovercard:hover .hover-card-content a {
+body .thread-wrapper .hovercard:hover .hover-card-content a {
 	color: $link_color !important;
 }
 

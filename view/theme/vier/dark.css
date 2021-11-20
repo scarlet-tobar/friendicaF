@@ -45,7 +45,7 @@ aside, right_aside, .menu-popup, .fc-state-highlight, a.off, .autocomplete {
 }
 
 body, section, blockquote, blockquote.shared_content, #profile-jot-form, 
-.dspr, .twit, .pump, .dfrn, .tread-wrapper, code, .mail-list-wrapper, div.pager, ul.tabs {
+.dspr, .twit, .pump, .dfrn, .thread-wrapper, code, .mail-list-wrapper, div.pager, ul.tabs {
 	color: #989898 !important;
 	background-color: #171B1F !important;
 }
