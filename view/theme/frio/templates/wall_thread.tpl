@@ -58,16 +58,6 @@ as the value of $top_child_total (this is done at the end of this file)
 {{/if}}
 {{/if}}
 
-{{* TODO => Unknown block *}}
-<div class="wall-item-decor" style="display:none;">
-	{{if $item.star}}
-	<span class="icon s22 star {{$item.isstarred}}" id="starred-{{$item.id}}" title="{{$item.star.starred}}">{{$item.star.starred}}</span>
-	{{/if}}
-	{{if $item.lock}}<span class="navicon lock fakelink" onclick="lockview(event, 'item', {{$item.id}});" title="{{$item.lock}}"></span><span class="fa fa-lock"></span>{{/if}}
-</div>
-{{* /TODO => Unknown block *}}
-
-
 {{* Use a different div container in dependence max thread-level = 7 *}}
 {{if $item.thread_level<7}}
 <div class="item-{{$item.id}} wall-item-container {{$item.indent}} {{$item.network}} thread_level_{{$item.thread_level}} {{if $item.thread_level==1}}panel-body h-entry{{else}}u-comment h-cite{{/if}}" id="item-{{$item.guid}}"><!-- wall-item-container -->
@@ -131,7 +121,7 @@ as the value of $top_child_total (this is done at the end of this file)
 	{{/if}}
 
 			{{* contact info header*}}
-		<div role="heading" aria-level="{{$item.thread_level}}">
+		<div aria-level="{{$item.thread_level}}">
 			<div class="preferences">
 				{{if $item.network_icon != ""}}
 					<span class="wall-item-network"><i class="fa fa-{{$item.network_icon}}" title="{{$item.network_name}}" aria-hidden="true"></i></span>

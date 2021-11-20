@@ -1,11 +1,3 @@
-<!-- TODO => Unknow block -->
-<div class="wall-item-decor" style="display:none;">
-	<span class="icon s22 star {{$item.isstarred}}" id="starred-{{$item.id}}" title="{{$item.star.starred}}">{{$item.star.starred}}</span>
-	{{if $item.lock}}<span class="navicon lock fakelink" onclick="lockview(event, 'item', {{$item.id}});" title="{{$item.lock}}"></span><span class="fa fa-lock" aria-hidden="true"></span>{{/if}}
-</div>
-<!-- ./TODO => Unknow block -->
-
-
 <div class="panel item-{{$item.id}}" id="item-{{$item.guid}}">
 	<span class="commented" style="display: none;">{{$item.commented}}</span>
 	<span class="received" style="display: none;">{{$item.received}}</span>
@@ -48,7 +40,7 @@
 
 
 			{{* contact info header*}}
-			<div role="heading" class="contact-info hidden-sm hidden-xs media-body"><!-- <= For computer -->
+			<div class="contact-info hidden-sm hidden-xs media-body"><!-- <= For computer -->
 				<h4 class="media-heading">
 					<a href="{{$item.profile_url}}" title="{{$item.linktitle}}" class="wall-item-name-link userinfo hover-card">
 						<span class="wall-item-name {{$item.sparkle}}">{{$item.name}}</span>
