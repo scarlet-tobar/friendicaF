@@ -2,23 +2,29 @@
 <script type="text/javascript" src="../../js/mod_notifications.js?v={{$smarty.const.FRIENDICA_VERSION}}"></script>
 
 <div class="generic-page-wrapper">
-	{{include file="section_title.tpl" title=$l10n.title}}
+	{{include file="section_title.tpl" title=$header}}
 
 	{{if $tabs }}{{include file="common_tabs.tpl"}}{{/if}}
 
 	<div class="notif-network-wrapper">
+		{{* The "show ignored" link *}}
+		{{if $showLink}}<a href="{{$showLink.href}}" id="notifications-show-hide-link">{{$showLink.text}}</a>{{/if}}
+
 		{{* The notifications *}}
 		{{if $notifications}}
 		<ul class="notif-network-list media-list">
 		{{foreach $notifications as $notification}}
-			{{include file="notifications/notification.tpl" notification=$notification}}
+			<li>{{$notification nofilter}}</li>
 		{{/foreach}}
 		</ul>
-        {{else}}
-		<div class="notification_nocontent">{{$l10n.noContent}}</div>
+		{{/if}}
+
+		{{* If no notifications messages available *}}
+		{{if $noContent}}
+		<div class="notification_nocontent">{{$noContent}}</div>
 		{{/if}}
 	</div>
 
 	{{* The pager *}}
-	{{$pager nofilter}}
+	{{$paginate nofilter}}
 </div>

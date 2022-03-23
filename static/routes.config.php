@@ -434,14 +434,21 @@ return [
 		'/{profile}/view' => [Module\NoScrape::class, [R::GET]],
 	],
 
-	'/notifications' => [
-		'/network[/json]'    => [Module\Notifications\Notifications::class, [R::GET, R::POST]],
-		'/system[/json]'     => [Module\Notifications\Notifications::class, [R::GET, R::POST]],
-		'/personal[/json]'   => [Module\Notifications\Notifications::class, [R::GET, R::POST]],
-		'/home[/json]'       => [Module\Notifications\Notifications::class, [R::GET, R::POST]],
-		'/intros[/json]'     => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
-		'/intros/all[/json]' => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
+	'/notifies' => [
+		'/network[/json]'              => [Module\Notifications\Notifies::class     , [R::GET, R::POST]],
+		'/system[/json]'               => [Module\Notifications\Notifies::class     , [R::GET, R::POST]],
+		'/personal[/json]'             => [Module\Notifications\Notifies::class     , [R::GET, R::POST]],
+		'/home[/json]'                 => [Module\Notifications\Notifies::class     , [R::GET, R::POST]],
+		'/intros[/json]'               => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
+		'/intros/all[/json]'           => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
 		'/intros/{contact:\d+}[/json]' => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
+	],
+
+	'/notifications' => [
+		'/{type:network|system|personal|home}[/json]' => [Module\Notifications\Notifications::class, [R::GET]],
+		'/intros[/json]'                              => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
+		'/intros/all[/json]'                          => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
+		'/intros/{contact:\d+}[/json]'                => [Module\Notifications\Introductions::class, [R::GET, R::POST]],
 	],
 
 	'/notification'         => [

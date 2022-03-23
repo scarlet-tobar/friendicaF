@@ -31,7 +31,7 @@ use Friendica\Core\L10n;
 use Friendica\Core\Protocol;
 use Friendica\Core\Renderer;
 use Friendica\Model\User;
-use Friendica\Module\BaseNotifications;
+use Friendica\Module\BaseNotifies;
 use Friendica\Module\Response;
 use Friendica\Navigation\Notifications\Factory\Introduction as IntroductionFactory;
 use Friendica\Navigation\Notifications\ValueObject\Introduction;
@@ -41,7 +41,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Prints notifications about introduction
  */
-class Introductions extends BaseNotifications
+class Introductions extends BaseNotifies
 {
 	/** @var IntroductionFactory */
 	protected $notificationIntro;

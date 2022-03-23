@@ -38,8 +38,10 @@ use Psr\Log\LoggerInterface;
  * Base Module for each tab of the notification display
  *
  * General possibility to print it as JSON as well
+ *
+ * @deprecated since version 2020.05 Use \Friendica\Module\BaseNotifications instead
  */
-abstract class BaseNotifications extends BaseModule
+abstract class BaseNotifies extends BaseModule
 {
 	/** @var array Array of URL parameters */
 	const URL_TYPES = [
@@ -69,24 +71,73 @@ abstract class BaseNotifications extends BaseModule
 	];
 
 	/** @var int The default count of items per page */
-	const ITEMS_PER_PAGE = 30;
+	const ITEMS_PER_PAGE = 20;
 	/** @var int The default limit of notifications per page */
 	const DEFAULT_PAGE_LIMIT = 80;
+
+	/** @var boolean True, if ALL entries should get shown */
+	protected $showAll;
+	/** @var int The determined start item of the current page */
+	protected $firstItemNum;
+
+	/** @var Arguments */
+	protected $args;
+
+	/**
+	 * Collects all notifications from the backend
+	 *
+	 * @return array The determined notification array
+	 *               ['header', 'notifications']
+	 */
+	abstract public function getNotifications();
+
+	public function __construct(L10n $l10n, App\BaseURL $baseUrl, App\Arguments $args, LoggerInterface $logger, Profiler $profiler, Response $response, array $server, array $parameters = [])
+	{
+		parent::__construct($l10n, $baseUrl, $args, $logger, $profiler, $response, $server, $parameters);
+
+		if (!local_user()) {
+			throw new ForbiddenException($this->t('Permission denied.'));
+		}
+
+		$page = ($_REQUEST['page'] ?? 0) ?: 1;
+
+		$this->firstItemNum = ($page * self::ITEMS_PER_PAGE) - self::ITEMS_PER_PAGE;
+		$this->showAll      = ($_REQUEST['show'] ?? '') === 'all';
+	}
+
+	protected function rawContent(array $request = [])
+	{
+		// If the last argument of the query is NOT json, return
+		if ($this->args->get($this->args->getArgc() - 1) !== 'json') {
+			return;
+		}
+
+		// Set the pager
+		$pager = new Pager($this->l10n, $this->args->getQueryString(), self::ITEMS_PER_PAGE);
+
+		// Add additional informations (needed for json output)
+		$notifications = [
+			'notifications' => $this->getNotifications(),
+			'items_page'    => $pager->getItemsPerPage(),
+			'page'          => $pager->getPage(),
+		];
+
+		System::jsonExit($notifications);
+	}
 
 	/**
 	 * Shows the printable result of notifications for a specific tab
 	 *
-	 * @param string $header        The notification header
-	 * @param string $noContent     The string in case there are no notifications
-	 * @param array  $notifications The array with the notifications
-	 * @param int    $totalCount
+	 * @param string $header    The notification header
+	 * @param array  $notifies  The array with the notifications
+	 * @param string $noContent The string in case there are no notifications
+	 * @param array  $showLink  The possible links at the top
 	 *
 	 * @return string The rendered output
 	 *
 	 * @throws \Friendica\Network\HTTPException\InternalServerErrorException
-	 * @throws \Friendica\Network\HTTPException\ServiceUnavailableException
 	 */
-	protected function printContent(string $header, string $noContent, array $notifications, int $totalCount): string
+	protected function printContent(string $header, array $notifies, string $noContent, array $showLink)
 	{
 		// Get the nav tabs for the notification pages
 		$tabs = $this->getTabs();
@@ -94,22 +145,21 @@ abstract class BaseNotifications extends BaseModule
 		// Set the pager
 		$pager = new Pager($this->l10n, $this->args->getQueryString(), self::ITEMS_PER_PAGE);
 
-		$notif_tpl = Renderer::getMarkupTemplate('notifications/notifications.tpl');
+		$notif_tpl = Renderer::getMarkupTemplate('notifications/notifies.tpl');
 		return Renderer::replaceMacros($notif_tpl, [
-			'$l10n' => [
-				'title' => $header ?: $this->t('Notifications'),
-				'noContent' => $noContent,
-			],
+			'$header'        => $header ?? $this->t('Notifies'),
 			'$tabs'          => $tabs,
-			'$notifications' => $notifications,
-			'$pager'         => $pager->renderFull($totalCount),
+			'$notifications' => $notifies,
+			'$noContent'     => $noContent,
+			'$showLink'      => $showLink,
+			'$paginate'      => $pager->renderMinimal(count($notifies))
 		]);
 	}
 
 	/**
 	 * List of pages for the Notifications TabBar
 	 *
-	 * @return array with notifications TabBar data
+	 * @return array with with notifications TabBar data
 	 * @throws Exception
 	 */
 	private function getTabs()
