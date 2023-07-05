@@ -73,7 +73,7 @@ HELP;
 
 
 	/**
-	 * Adds a domain pattern to the silence list
+	 * Silences all contacts with a specific domain.
 	 * 
 	 * @return int The return code (0 = success, 1 = failed)
 	 */
@@ -89,7 +89,7 @@ HELP;
 	}
 
 	/**
-	 * Removes a domain pattern from the Silence list
+	 * Removes silence from all contacts with a specific domain.
 	 *
 	 * @return int The return code (0 = success, 1 = failed)
 	 */
@@ -100,7 +100,7 @@ HELP;
 		}
 		$domain = $this->getArgument(1);
 		Contact::update(['hidden' => false], ['baseurl' => "https://" . $domain]);
-		$this->out('The account has been successfully unsilenced from the global community page.');
+		$this->out('The domain has been successfully unsilenced from the global community page.');
 		return 0;
 	}
 }
