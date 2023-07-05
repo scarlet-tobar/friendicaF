@@ -26,10 +26,9 @@ use Asika\SimpleConsole\Console;
 use Friendica\Model\Contact;
 
 /**
- * Manage Silenceed servers
+ * Manage Silenced servers
  *
- * With this tool, you can list the current Silenceed servers
- * or you can add / remove a Silenced server from the list
+ * With this tool, you can add / remove a Silenced server.
  */
 class ServerSilence extends Console
 {
@@ -39,19 +38,17 @@ class ServerSilence extends Console
 	protected function getHelp(): string
 	{
 		return <<<HELP
-console serverSilence - Manage Silenceed server domain patterns
+console serverSilence - Manage silenced server domain patterns
 Usage
-    bin/console serversilence [-h|--help|-?] [-v]
-    bin/console serversilence add <pattern> <reason> [-h|--help|-?] [-v]
-    bin/console serversilence remove <pattern> [-h|--help|-?] [-v]
+    bin/console serversilence [-h|--help|-?]
+    bin/console serversilence add <domain> [-h|--help|-?]
+    bin/console serversilence remove <domain> [-h|--help|-?]
 
 Description
-    With this tool, you can list the current silenced server domain patterns
-    or you can add / remove a Silenceed server domain pattern from the list.
+    With this tool, you can add / remove a silenced server domain.
 
 Options
     -h|--help|-? Show help information
-    -v           Show more debug information.
 HELP;
 	}
 
